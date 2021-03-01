@@ -46,6 +46,18 @@ UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
       maskLayer.add(animation, forKey: nil)
 
       fromVC.logo.add(animation, forKey: nil)
+    } else {
+
+      let fromView = transitionContext.view(forKey: .from)!
+      let toView = transitionContext.view(forKey: .to)!
+
+      transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+
+      UIView.animate(withDuration: animationDuration, delay: 0.0, options: .curveEaseIn, animations: {
+        fromView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+      }, completion: { _ in
+        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+      })
     }
   }
 
