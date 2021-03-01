@@ -20,8 +20,8 @@ class MasterViewController: UIViewController {
     super.viewDidAppear(animated)
     
     // add the tap gesture recognizer
-    let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
-    view.addGestureRecognizer(tap)
+    let pan = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+    view.addGestureRecognizer(pan)
     
     // add the logo to the view
     logo.position = CGPoint(x: view.layer.bounds.size.width/2,
@@ -33,6 +33,10 @@ class MasterViewController: UIViewController {
   //
   // MARK: Gesture recognizer handler
   //
+
+  @objc func didPan(_ recognizer: UIPanGestureRecognizer) {
+  }
+
   @objc func didTap() {
     performSegue(withIdentifier: "details", sender: nil)
   }
